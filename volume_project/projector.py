@@ -16,13 +16,16 @@ def _scan(data, left, right, b, c, height, width):
         delta = end-start
         distance = math.sqrt(np.sum(delta**2))
         for step in range(int(math.floor(distance)) + 1):
-            p = start if distance < 1e-12 else start + (step / distance) * delta
+            factor = 0.0 if distance < 1e-12 else step / distance
+            px = start[0] + factor * delta[0]
+            py = start[1] + factor * delta[1]
+            pz = start[2] + factor * delta[2]
             column = int(math.floor((width-1-distance)/2 + step + 0.5))
             if column < 0 or column >= width:
                 continue
-            if not (0 <= p[0] < data.shape[0] and 0 <= p[1] < data.shape[1] and 0 <= p[2] < data.shape[2]):
+            if not (0 <= px < data.shape[0] and 0 <= py < data.shape[1] and 0 <= pz < data.shape[2]):
                 continue
-            i, j, k = int(math.floor(p[0]+0.5)), int(math.floor(p[1]+0.5)), int(math.floor(p[2]+0.5))
+            i, j, k = int(math.floor(px+0.5)), int(math.floor(py+0.5)), int(math.floor(pz+0.5))
             if i < data.shape[0] and j < data.shape[1] and k < data.shape[2]:
                 output[y, column] = data[i, j, k]
     return output
