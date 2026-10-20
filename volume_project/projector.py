@@ -39,4 +39,5 @@ class Projector:
         height, width = plane.shape
         if height > self.max_side or width > self.max_side:
             raise ValueError(f'Projection exceeds {self.max_side} pixels per side')
-        return _scan(volume.data, *plane.geometry(), height, width)
+        left, right, b, c = plane.geometry()
+        return _scan(volume.data, left, right, b, c, height, width)
