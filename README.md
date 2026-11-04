@@ -94,7 +94,7 @@ Read the measured results and limitations before claiming a performance target.
 
 A local Git repository accompanies the archive, with implementation and validation
 commits. Commit identity is a neutral placeholder; set your own identity for
-future commits. No GitHub repository was created or published.
+future commits. The project repository is available at https://github.com/yonatanShoval/OOP_Exercise1.
 
 ```powershell
 git log --oneline
