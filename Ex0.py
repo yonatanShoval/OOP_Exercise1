@@ -22,7 +22,7 @@ def main(argv=None):
         if args.output.exists():
             raise ValueError('Output already exists; choose a new name or remove it first')
         volume = Volume.load(args.volume)
-        planes = read_planes(args.planes)
+        planes = read_planes(args.planes, allow_invalid=True)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         frames, width, height = VideoExporter(args.fps).write(args.output, volume, planes, Projector())
         print(f'Volume {volume.data.shape}; wrote {frames} frames ({width}x{height}) to {args.output}')

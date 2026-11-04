@@ -71,8 +71,13 @@ class Plane:
         return (int(np.ceil(np.linalg.norm(b-left))),
                 int(np.ceil(max(np.linalg.norm(right-left), np.linalg.norm(c-b)))) + 1)
 
+@dataclass(frozen=True)
+class InvalidPlane:
+    line: int
+    message: str
 
-def read_planes(path):
+
+def read_planes(path, *, allow_invalid=False):
     """CSV: one plane per row, exactly 9 or 12 numeric fields; no header."""
     planes = []
     with open(path, newline='', encoding='utf-8-sig') as stream:
@@ -85,7 +90,10 @@ def read_planes(path):
                 points = np.asarray([float(x) for x in row]).reshape(-1, 3)
                 planes.append(Plane(tuple(map(tuple, points))))
             except ValueError as exc:
-                raise ValueError(f'CSV line {line}: {exc}') from exc
+                message = f'CSV line {line}: {exc}'
+                if not allow_invalid:
+                    raise ValueError(message) from exc
+                planes.append(InvalidPlane(line, str(exc)))
     if not planes:
         raise ValueError('CSV contains no planes')
     return planes
