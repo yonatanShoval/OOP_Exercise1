@@ -40,7 +40,7 @@ class Plane:
             left, right, b, c = p
         u, v = b - left, c - right
         length = np.linalg.norm(u)
-        if length < 1e-9 or not np.isclose(length, np.linalg.norm(v), rtol=1e-6, atol=1e-8):
+        if length < 1e-9 or not np.isclose(length, np.linalg.norm(v), rtol=0, atol=0.001):
             raise ValueError('The two nonzero legs must have equal length')
         base = c - b
         width = np.linalg.norm(base)
