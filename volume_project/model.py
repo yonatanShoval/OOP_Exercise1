@@ -51,6 +51,9 @@ class Plane:
             top_width = np.linalg.norm(top)
             if top_width < 1e-9 or np.dot(top, base) <= 0:
                 raise ValueError('Trapezoid bases must be nonzero and point in the same direction')
+            # Assignment Q&A, condition b: dist(a1,a2) <= dist(b,c).
+            if top_width > width + 0.001:
+                raise ValueError('Top edge a1->a2 must not be longer than the base b->c')
             if np.linalg.norm(np.cross(top, base)) > 1e-6 * top_width * width:
                 raise ValueError('Trapezoid bases must be parallel')
             # Equal legs alone also permit an oblique parallelogram; reject that ambiguity.

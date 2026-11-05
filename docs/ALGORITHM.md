@@ -44,7 +44,8 @@ Floating-point representations near a boundary can still change a rounded sample
   edge is not a separate row. The final fractional step is clamped.
 - ceil sizes and an inclusive base endpoint remove noninteger dimension ambiguity
   and the endpoint overrun in the pseudocode's Dbc-wide output with x1<=d12.
-- Trapezoid width uses both bases, permitting narrowing as well as widening.
+- The lecturer's Q&A says the top edge (a1->a2) can't be longer than the base (b->c),
+  so we raise an error in that case.
 - Trapezoid bases must be parallel, consistently directed and centred; equal-leg
   oblique parallelograms are rejected. Rectangles are supported.
 - Images of differing size are centered in one canvas without resizing.
