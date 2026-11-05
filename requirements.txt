@@ -3,3 +3,4 @@ pynrrd>=1.1,<2
 numba>=0.61,<1
 imageio>=2.34,<3
 imageio-ffmpeg>=0.5,<1
+pillow>=10.1

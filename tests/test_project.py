@@ -5,9 +5,9 @@ import unittest
 import numpy as np
 import nrrd
 import imageio.v2 as imageio
-from volume_project.model import Volume, Plane, read_planes
+from volume_project.model import Volume, Plane, InvalidPlane, read_planes
 from volume_project.projector import Projector
-from volume_project.video import GrayMapper, VideoExporter
+from volume_project.video import GrayMapper, VideoExporter, ErrorFrame
 from Ex0 import main
 
 
@@ -73,7 +73,7 @@ class ProjectionTests(unittest.TestCase):
         for points in [((0,0,0),)*3, ((0,0,0),(1,0,0),(2,0,0)),
                        ((0,0,0),(1,0,0),(0,2,0)),
                        ((0,0,0),(2,0,0),(1,2,0),(3,2,0)),
-                        ((0,0,0),(10,0,0),(3,4,0),(7,4,0)),
+                       ((0,0,0),(10,0,0),(3,4,0),(7,4,0)),
                        ((float('nan'),0,0),(1,0,0),(0,1,0))]:
             with self.assertRaises(ValueError): Plane(points)
 
@@ -95,6 +95,12 @@ class ProjectionTests(unittest.TestCase):
         data=np.array([-20,0,20],dtype=np.int16)
         np.testing.assert_array_equal(GrayMapper(data).convert(data),[0,127,255])
         np.testing.assert_array_equal(GrayMapper(np.ones(3)).convert(np.ones(3)),[0,0,0])
+
+    def test_error_frame(self):
+        frame = ErrorFrame(InvalidPlane(7, 'unequal legs')).draw(120, 200)
+        self.assertEqual(frame.shape, (120, 200))
+        self.assertEqual(frame.dtype, np.uint8)
+        self.assertTrue(frame.max() == 255 and frame.min() == 0)
 
     def test_nrrd_roundtrip(self):
         with tempfile.TemporaryDirectory() as d:
