@@ -5,6 +5,10 @@ import numpy as np
 import nrrd
 
 
+class InvalidPlaneError(ValueError):
+    """Raised when 3 or 4 points do not describe a valid plane."""
+
+
 @dataclass(frozen=True)
 class Volume:
     data: np.ndarray
@@ -31,9 +35,9 @@ class Plane:
     def __post_init__(self):
         p = np.asarray(self.points, dtype=np.float64)
         if p.shape not in ((3, 3), (4, 3)) or not np.isfinite(p).all():
-            raise ValueError('A plane requires 3 or 4 finite 3D points')
+            raise InvalidPlaneError('A plane requires 3 or 4 finite 3D points')
         if np.abs(p).max() > 1e6:
-            raise ValueError('Coordinates exceed the supported magnitude of 1e6')
+            raise InvalidPlaneError('Coordinates exceed the supported magnitude of 1e6')
         if len(p) == 3:
             left, right, b, c = p[0], p[0], p[1], p[2]
         else:
@@ -41,25 +45,25 @@ class Plane:
         u, v = b - left, c - right
         length = np.linalg.norm(u)
         if length < 1e-9 or not np.isclose(length, np.linalg.norm(v), rtol=0, atol=0.001):
-            raise ValueError('The two nonzero legs must have equal length')
+            raise InvalidPlaneError('The two nonzero legs must have equal length')
         base = c - b
         width = np.linalg.norm(base)
         if width < 1e-9 or np.linalg.norm(np.cross(u, base)) <= 1e-9 * length * width:
-            raise ValueError('Plane points must not be collinear or degenerate')
+            raise InvalidPlaneError('Plane points must not be collinear or degenerate')
         if len(p) == 4:
             top = right - left
             top_width = np.linalg.norm(top)
             if top_width < 1e-9 or np.dot(top, base) <= 0:
-                raise ValueError('Trapezoid bases must be nonzero and point in the same direction')
+                raise InvalidPlaneError('Trapezoid bases must be nonzero and point in the same direction')
             # Assignment Q&A, condition b: dist(a1,a2) <= dist(b,c).
             if top_width > width + 0.001:
-                raise ValueError('Top edge a1->a2 must not be longer than the base b->c')
+                raise InvalidPlaneError('Top edge a1->a2 must not be longer than the base b->c')
             if np.linalg.norm(np.cross(top, base)) > 1e-6 * top_width * width:
-                raise ValueError('Trapezoid bases must be parallel')
+                raise InvalidPlaneError('Trapezoid bases must be parallel')
             # Equal legs alone also permit an oblique parallelogram; reject that ambiguity.
             mid_delta = (b + c - left - right) / 2
             if abs(np.dot(mid_delta, base)) > 1e-6 * np.linalg.norm(mid_delta) * width:
-                raise ValueError('Trapezoid must be centred (isosceles)')
+                raise InvalidPlaneError('Trapezoid must be centred (isosceles)')
         object.__setattr__(self, 'points', tuple(tuple(float(x) for x in q) for q in p))
 
     def geometry(self):
@@ -89,13 +93,13 @@ def read_planes(path, *, allow_invalid=False):
                 continue
             try:
                 if len(row) not in (9, 12):
-                    raise ValueError('expected 9 or 12 comma-separated coordinates')
+                    raise InvalidPlaneError('expected 9 or 12 comma-separated coordinates')
                 points = np.asarray([float(x) for x in row]).reshape(-1, 3)
                 planes.append(Plane(tuple(map(tuple, points))))
             except ValueError as exc:
                 message = f'CSV line {line}: {exc}'
                 if not allow_invalid:
-                    raise ValueError(message) from exc
+                    raise InvalidPlaneError(message) from exc
                 planes.append(InvalidPlane(line, str(exc)))
     if not planes:
         raise ValueError('CSV contains no planes')

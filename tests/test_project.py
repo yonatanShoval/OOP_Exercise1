@@ -5,7 +5,7 @@ import unittest
 import numpy as np
 import nrrd
 import imageio.v2 as imageio
-from volume_project.model import Volume, Plane, InvalidPlane, read_planes
+from volume_project.model import Volume, Plane, InvalidPlane, InvalidPlaneError, read_planes
 from volume_project.projector import Projector
 from volume_project.video import GrayMapper, VideoExporter, ErrorFrame
 from Ex0 import main
@@ -75,7 +75,7 @@ class ProjectionTests(unittest.TestCase):
                        ((0,0,0),(2,0,0),(1,2,0),(3,2,0)),
                        ((0,0,0),(10,0,0),(3,4,0),(7,4,0)),
                        ((float('nan'),0,0),(1,0,0),(0,1,0))]:
-            with self.assertRaises(ValueError): Plane(points)
+            with self.assertRaises(InvalidPlaneError): Plane(points)
 
     def test_invalid_volume_and_size(self):
         for data in (np.zeros((3,3)),np.zeros((3,3,3),dtype=float),np.zeros((0,3,3),dtype=np.uint8)):
@@ -87,7 +87,7 @@ class ProjectionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)/'planes.csv'
             p.write_text('# comment\n\n1,2,3\n')
-            with self.assertRaisesRegex(ValueError,'line 3'): read_planes(p)
+            with self.assertRaisesRegex(InvalidPlaneError,'line 3'): read_planes(p)
             p.write_text('')
             with self.assertRaisesRegex(ValueError,'no planes'): read_planes(p)
 
