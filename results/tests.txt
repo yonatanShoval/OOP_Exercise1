@@ -1,29 +1,28 @@
 test_axis_rectangle_exact (test_project.ProjectionTests.test_axis_rectangle_exact) ... ok
 test_csv_line_errors (test_project.ProjectionTests.test_csv_line_errors) ... ok
-test_end_to_end_and_frame_order (test_project.ProjectionTests.test_end_to_end_and_frame_order) ... /root/.local/lib/python3.12/site-packages/nrrd/writer.py:148: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+test_end_to_end_and_frame_order (test_project.ProjectionTests.test_end_to_end_and_frame_order) ... C:\Users\ιελαγ\AppData\Local\Programs\Python\Python314\Lib\site-packages\nrrd\writer.py:148: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   file.write(b'# on ' + datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S').encode('ascii') + b'(GMT).\n')
-/root/.local/lib/python3.12/site-packages/imageio/plugins/ffmpeg.py:520: ResourceWarning: unclosed file <_io.BufferedWriter name=6>
+C:\Users\ιελαγ\AppData\Local\Programs\Python\Python314\Lib\site-packages\imageio\plugins\ffmpeg.py:520: ResourceWarning: unclosed file <_io.BufferedWriter name=4>
   s = self._read_gen.__next__()
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/root/.local/lib/python3.12/site-packages/imageio/plugins/ffmpeg.py:520: ResourceWarning: unclosed file <_io.BufferedReader name=7>
+C:\Users\ιελαγ\AppData\Local\Programs\Python\Python314\Lib\site-packages\imageio\plugins\ffmpeg.py:520: ResourceWarning: unclosed file <_io.BufferedReader name=5>
   s = self._read_gen.__next__()
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-Error: Output already exists; choose a new name or remove it first
 ok
+test_error_frame (test_project.ProjectionTests.test_error_frame) ... ok
 test_integer_types (test_project.ProjectionTests.test_integer_types) ... ok
 test_invalid_geometry (test_project.ProjectionTests.test_invalid_geometry) ... ok
 test_invalid_volume_and_size (test_project.ProjectionTests.test_invalid_volume_and_size) ... ok
 test_mapper (test_project.ProjectionTests.test_mapper) ... ok
-test_nrrd_roundtrip (test_project.ProjectionTests.test_nrrd_roundtrip) ... /root/.local/lib/python3.12/site-packages/nrrd/writer.py:148: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  file.write(b'# on ' + datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S').encode('ascii') + b'(GMT).\n')
-ok
+test_nrrd_roundtrip (test_project.ProjectionTests.test_nrrd_roundtrip) ... ok
 test_oblique_exact (test_project.ProjectionTests.test_oblique_exact) ... ok
 test_outside_and_rounding (test_project.ProjectionTests.test_outside_and_rounding) ... ok
 test_trapezoid (test_project.ProjectionTests.test_trapezoid) ... ok
 test_triangle_mask_and_base (test_project.ProjectionTests.test_triangle_mask_and_base) ... ok
 
 ----------------------------------------------------------------------
-Ran 12 tests in 3.537s
+Ran 13 tests in 0.915s
 
 OK
-Volume (12, 12, 12); wrote 3 frames (10x8) to /tmp/tmp1d8lawmp/movie.mp4
+Volume (12, 12, 12); wrote 3 frames (10x8) to C:\Users\2C43~1\AppData\Local\Temp\tmplcg692te\movie.mp4
+Volume (12, 12, 12); wrote 3 frames (10x8) to C:\Users\2C43~1\AppData\Local\Temp\tmplcg692te\movie.mp4
