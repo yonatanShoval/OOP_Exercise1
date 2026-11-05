@@ -9,10 +9,9 @@ maximum-intensity projection.
 
 ## Windows and VS Code quick start
 
-Use Python 3.12 or 3.13 for a reproducible environment compatible with the
-compiled dependencies. Newer Python versions require compatible NumPy/Numba
-wheels; the user's existing Python 3.14 installation has not been tested here.
-Open this extracted folder in VS Code, then open Terminal > New Terminal.
+Tested with Python 3.14 on Windows 10 (see results/EXPERIMENT.md).
+Open the project folder in VS Code, then open Terminal > New Terminal.
+If installing Numba fails on your Python version, use a Python 3.12 environment:
 
 ```powershell
 py -3.12 -m venv .venv
@@ -89,20 +88,12 @@ python Ex0.py examples/MRHead.nrrd examples/mri_with_errors.csv errors.mp4
 
 Projection throughput and video playback FPS are different: `--fps` is playback
 speed; `benchmark.py` measures actual computation throughput on 500^3 bytes.
-Read the measured results and limitations before claiming a performance target.
+Measured results are in results/EXPERIMENT.md.
 
 ## Repository
 
-A local Git repository accompanies the archive, with implementation and validation
-commits. Commit identity is a neutral placeholder; set your own identity for
-future commits. The project repository is available at https://github.com/yonatanShoval/OOP_Exercise1.
-
-```powershell
-git log --oneline
-git config user.name "Your Name"
-git config user.email "your@email.example"
-```
+https://github.com/yonatanShoval/OOP_Exercise1
 
 Third-party libraries handle file reading, numerical storage, compilation and
 video encoding. The geometric scanline algorithm is implemented in this project.
-All design choices should be reviewed against any additional lecturer guidance.
+

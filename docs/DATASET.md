@@ -6,7 +6,6 @@
 https://drive.google.com/file/d/1cqqOgSf8k4e14K5CBs-V_EvMmATX1K-J/view
 
 It is the real demonstration input, not synthetic data or a reconstruction.
-The user's local copy is named MRHead_1.nrrd; filenames need not match.
 Shape, dtype and byte hash are recorded in results/EXPERIMENT.md.
 The assignment associates this data with the 3D Slicer open-source project.
 No additional redistribution license is inferred here from a file extension.
