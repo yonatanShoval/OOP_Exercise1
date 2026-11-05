@@ -13,7 +13,7 @@ Triangle and trapezoid tests check the last base and empty mask pixels.
 Check out-of-volume negative coordinates, half-integer rounding, uint8/uint16/
 uint32 maxima, signed MRI compatibility, empty or malformed CSV, CSV line numbers,
 nonfinite/unequal/collinear geometry, invalid dimensions/dtypes and output limits.
-Input/output name and existing-output protection are handled by the CLI.
+The CLI rejects an output path equal to an input, and overwrites an old output.
 
 ## I/O and integration
 

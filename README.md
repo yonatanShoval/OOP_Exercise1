@@ -27,7 +27,7 @@ python -m pip install -r requirements.txt
 python Ex0.py examples/MRHead.nrrd examples/mri_planes.csv my_video.mp4
 ```
 
-Do not overwrite an existing output. Use another output filename for another run.
+Running again with the same output name overwrites the old video.
 The first run includes Numba compilation and takes longer. No 3D Slicer, display
 server, or matplotlib is needed. imageio-ffmpeg supplies the FFmpeg executable.
 The MP4 already included in `results` can be opened without installing Python.

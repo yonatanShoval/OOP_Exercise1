@@ -12,7 +12,7 @@ Input 1 is an NRRD with three dimensions, each between 1 and 1023 inclusive.
 Unsigned 8-, 16- and 32-bit integers are required; signed equivalents are accepted
 for compatibility with real MRI files. Other data types are rejected.
 Input 2 is UTF-8 CSV as specified in README, with 9 or 12 finite numeric fields
-per non-comment row. Input 3 is a new .mp4 output path. Output is H.264 video,
+per non-comment row. Input 3 is the .mp4 output path. Output is H.264 video,
 yuv420p, at 30 playback FPS by default. The CLI permits another positive FPS.
 
 ## Functional requirements
@@ -30,7 +30,7 @@ FR6. Normalize using one min/max range from the whole volume; a constant volume
 maps to black. Export centered frames on one common, even-sized black canvas.
 FR7. Output exactly one frame per plane, preserving order without interpolation.
 FR8. Report input/geometry/output errors with nonzero exit status and a useful
-message. Refuse an existing output rather than overwrite it.
+message. If the output file already exists, it is overwritten.
 FR9. Provide deterministic data generation, automated tests, a demo and experiment.
 
 ## Nonfunctional requirements

@@ -110,7 +110,8 @@ class ProjectionTests(unittest.TestCase):
             self.assertEqual(frames[0].shape[:2],(8,10))
             means=[f.mean() for f in frames]
             self.assertTrue(means[0]<means[1]<means[2])
-            self.assertEqual(main([str(src),str(csv_path),str(out)]),1)
+            # Running the same command again overwrites the video.
+            self.assertEqual(main([str(src),str(csv_path),str(out)]),0)
 
 
 if __name__=='__main__': unittest.main()

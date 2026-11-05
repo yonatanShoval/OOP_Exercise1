@@ -19,8 +19,7 @@ def main(argv=None):
             raise ValueError('Output must have an .mp4 extension')
         if args.output.resolve() in (args.volume.resolve(), args.planes.resolve()):
             raise ValueError('Output must differ from both input files')
-        if args.output.exists():
-            raise ValueError('Output already exists; choose a new name or remove it first')
+        
         volume = Volume.load(args.volume)
         planes = read_planes(args.planes, allow_invalid=True)
         args.output.parent.mkdir(parents=True, exist_ok=True)
