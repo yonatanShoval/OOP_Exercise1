@@ -52,6 +52,14 @@ class ProjectionTests(unittest.TestCase):
         self.assertEqual(got[0,2],self.volume.data[0,2,3])
         p=Plane(((1.5,1,3),(3.5,1,3),(1.5,3,3),(3.5,3,3)))
         self.assertEqual(self.projector.project(self.volume,p)[0,0],self.volume.data[2,2,3])
+        # Less than half a voxel outside still rounds to the edge voxel.
+        p=Plane(((-0.3,1,3),(2.7,1,3),(-0.3,3,3),(2.7,3,3)))
+        self.assertEqual(self.projector.project(self.volume,p)[0,0],self.volume.data[0,2,3])
+        # The far edge: 11.4 rounds to 11 (inside), 11.6 rounds to 12 (outside).
+        p=Plane(((11.4,1,3),(11.4,3,1),(11.4,3,5)))
+        self.assertEqual(self.projector.project(self.volume,p)[-1,2],self.volume.data[11,3,3])
+        p=Plane(((11.6,1,3),(11.6,3,1),(11.6,3,5)))
+        self.assertTrue(np.all(self.projector.project(self.volume,p)==0))
 
     def test_integer_types(self):
         p=Plane(((1,1,1),(4,1,1),(1,4,1),(4,4,1)))

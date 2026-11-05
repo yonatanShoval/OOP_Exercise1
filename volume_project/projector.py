@@ -23,10 +23,11 @@ def _scan(data, left, right, b, c, height, width):
             column = int(math.floor((width-1-distance)/2 + step + 0.5))
             if column < 0 or column >= width:
                 continue
-            if not (0 <= px < data.shape[0] and 0 <= py < data.shape[1] and 0 <= pz < data.shape[2]):
-                continue
-            i, j, k = int(math.floor(px+0.5)), int(math.floor(py+0.5)), int(math.floor(pz+0.5))
-            if i < data.shape[0] and j < data.shape[1] and k < data.shape[2]:
+            # Nearest voxel: round each coordinate, then check the voxel exists.
+            i = int(math.floor(px + 0.5))
+            j = int(math.floor(py + 0.5))
+            k = int(math.floor(pz + 0.5))
+            if 0 <= i < data.shape[0] and 0 <= j < data.shape[1] and 0 <= k < data.shape[2]:
                 output[y, column] = data[i, j, k]
     return output
 

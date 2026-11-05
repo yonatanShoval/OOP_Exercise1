@@ -27,9 +27,9 @@ Initialize a zero H by W array of the volume's dtype. For row y in 0..H-1:
 4. For integer s from 0 through floor(d), sample p=start+s*direction.
    A zero-width row uses start once, avoiding division by zero.
 5. Center it at column floor((W-1-d)/2+s+0.5).
-6. Reject p outside continuous index bounds [0,sx) x [0,sy) x [0,sz).
-   Round each coordinate with floor(value+0.5), then check discrete bounds again.
-   If either bounds check fails, leave zero. Otherwise store M[i,j,k].
+6. Round each coordinate of p to the nearest integer to get the voxel (i,j,k).
+   If this voxel is inside the volume, store M[i,j,k]; otherwise leave zero.
+   So a point less than half a voxel outside still gets the edge voxel.
 
 Nearest-neighbour rounding uses ties toward the greater integer. It does not use
 Python round(), whose half-to-even behavior would make a different convention.
