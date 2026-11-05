@@ -33,5 +33,7 @@ data separately. This constant dataset is not used as medical evidence.
 mri_planes.csv: 120 rectangular planes rotating around the array's second axis,
 angles -70..70 degrees, center (127.5,127.5,64.5), half-width 60, height 210.
 triangle_planes.csv: 60 equal-leg triangles, angles -50..50 degrees.
+mri_with_errors.csv: 12 valid rectangles and 4 invalid rows (CSV lines 5, 9, 13, 17),
+used to show error frames in the demo video.
 These coordinates were generated for this project; they were not supplied as a
 mandatory CSV schema by the lecturer. Run make_examples.py to regenerate.

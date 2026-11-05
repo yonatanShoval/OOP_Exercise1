@@ -84,6 +84,7 @@ python make_examples.py
 python benchmark.py
 python Ex0.py examples/analytic.nrrd examples/analytic_planes.csv analytic.mp4
 python Ex0.py examples/MRHead.nrrd examples/triangle_planes.csv triangle.mp4
+python Ex0.py examples/MRHead.nrrd examples/mri_with_errors.csv errors.mp4
 ```
 
 Projection throughput and video playback FPS are different: `--fps` is playback
