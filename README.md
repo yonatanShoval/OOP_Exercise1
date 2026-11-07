@@ -75,6 +75,16 @@ interpolation, X-ray rendering, GPU acceleration or interactive controls.
 - `results/EXPERIMENT.md`: actual environment, correctness and speed results.
 - `results/*.mp4`: actual output videos.
 
+## Results
+
+- [Experiment report](results/EXPERIMENT.md)
+- [Benchmark results](results/benchmark.json)
+- [Test output](results/tests.txt)
+- [MRI oblique video](results/mri_oblique.mp4)
+- [MRI triangle video](results/mri_triangle.mp4)
+- [MRI video with error frames](results/mri_with_errors.mp4)
+- [Analytic volume video](results/analytic_oblique.mp4)
+
 ## Reproduce checks and examples
 
 ```powershell
