@@ -30,6 +30,11 @@ Verify triangle masking, anatomy visible, changing oblique slices, constant
 frame dimensions and exact frame counts. This is a visual check, not a medical
 orientation or physical aspect-ratio validation.
 
+Run the CLI on mri_with_errors.csv (12 valid rows, 4 invalid rows). The video
+must have 16 frames, with error frames exactly at the invalid rows, and a warning
+with the line number must be printed for each invalid row. test_error_frame
+checks the error frame itself.
+
 ## Performance
 
 Run benchmark.py on 500^3 uint8 with axis rectangles, oblique rectangles and
@@ -37,7 +42,7 @@ triangles; five runs of 100 projections each, after one warmup per geometry.
 Report all runs, median, minimum, output sizes and runtime environment. This is
 single-process sequential throughput, excluding volume I/O, JIT and encoding.
 Measure real video export separately, including startup, if reporting total time.
-A result on this host does not guarantee identical Windows performance.
+Results from my laptop are in results/EXPERIMENT.md.
 
 ## Reproduction
 

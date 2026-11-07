@@ -18,9 +18,10 @@ yuv420p, at 30 playback FPS by default. The CLI permits another positive FPS.
 ## Functional requirements
 
 FR1. Read NRRD preserving its array-axis ordering via index_order='F'.
-FR2. Validate all planes before opening the encoder. Reject unequal legs,
-degenerate triangles, crossed/nonparallel or noncentred trapezoids, nonfinite
-coordinates, unsupported volumes, empty CSV and malformed rows.
+FR2. Validate every plane and raise InvalidPlaneError for unequal legs,
+degenerate triangles, crossed/nonparallel or noncentred trapezoids, a top edge
+longer than the base, nonfinite coordinates and malformed rows.
+Unsupported volumes and an empty CSV are also rejected.
 FR3. Sample three-point triangles and four-point isosceles trapezoids according
 to the detailed scanline algorithm. Rectangles are allowed.
 FR4. Use nearest-neighbour voxel sampling with explicit rounding. Samples outside
@@ -29,8 +30,11 @@ FR5. Preserve original integer values and dtype in raw projection matrices.
 FR6. Normalize using one min/max range from the whole volume; a constant volume
 maps to black. Export centered frames on one common, even-sized black canvas.
 FR7. Output exactly one frame per plane, preserving order without interpolation.
-FR8. Report input/geometry/output errors with nonzero exit status and a useful
-message. If the output file already exists, it is overwritten.
+FR8. In the CLI, an invalid plane does not stop the run: its frame becomes an
+error frame (black, white X, "INVALID PLANE" and the CSV line number), a warning
+is printed, and the other planes are rendered normally. Input or output errors
+(missing file, bad volume, empty CSV, wrong extension) stop the run with a
+one-line message and exit status 1. An existing output file is overwritten.
 FR9. Provide deterministic data generation, automated tests, a demo and experiment.
 
 ## Nonfunctional requirements

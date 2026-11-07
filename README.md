@@ -65,9 +65,9 @@ Not included: GUI, medical interpretation, physical-space reorientation,
 interpolation, X-ray rendering, GPU acceleration or interactive controls.
 
 - `Ex0.py`: command-line entry point; optional `--fps 30` controls playback.
-- `volume_project/model.py`: Volume, Plane and CSV loading.
+- `volume_project/model.py`: Volume, Plane, InvalidPlaneError and CSV loading.
 - `volume_project/projector.py`: Projector and the compiled sampling kernel.
-- `volume_project/video.py`: GrayMapper and VideoExporter.
+- `volume_project/video.py`: GrayMapper, ErrorFrame and VideoExporter.
 - `docs/SRS.md`: requirements and acceptance criteria.
 - `docs/ALGORITHM.md`: exact algorithm and ambiguity decisions.
 - `docs/DATASET.md`: datasets and provenance.
