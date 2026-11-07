@@ -50,8 +50,8 @@ is timed: no file loading, no compilation and no video encoding.
 | triangle | 558 x 500 | 201.4 | 155.1 |
 
 Every run is far above the required 30 FPS, and the median of every plane type
-is above the expected 100 FPS. One axis_rectangle run was 88 FPS; the runs vary
-because of other programs running on the laptop. All values are in
+is above the expected 100 FPS. One axis_rectangle run was 88 FPS; the runs vary,
+probably because of other programs running on the laptop. All values are in
 `benchmark.json`.
 
 ## Limitations
