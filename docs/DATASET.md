@@ -5,11 +5,10 @@
 `examples/MRHead.nrrd` was downloaded from the exact file linked in the assignment:
 https://drive.google.com/file/d/1cqqOgSf8k4e14K5CBs-V_EvMmATX1K-J/view
 
-It is the real demonstration input, not synthetic data or a reconstruction.
+
 Shape, dtype and byte hash are recorded in results/EXPERIMENT.md.
 The assignment associates this data with the 3D Slicer open-source project.
-No additional redistribution license is inferred here from a file extension.
-Use the linked source for course provenance and any applicable terms.
+
 
 ## Analytic NRRD
 
@@ -25,7 +24,7 @@ oblique slices, triangle masks, trapezoids, rounding, bounds and all required
 unsigned widths. They do not depend on external downloads.
 benchmark.py creates a 500^3 uint8 constant volume (125,000,000 bytes); its purpose
 is timing three geometries. Numerical correctness is checked on nonconstant
-data separately. This constant dataset is not used as medical evidence.
+data separately. 
 
 ## Demonstration planes
 

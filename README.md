@@ -4,8 +4,7 @@ Python implementation of Introduction to Software Engineering Exercise 1.
 Given an integer NRRD volume and an ordered CSV of planes, the program samples
 the volume along each plane and streams one image per plane to an MP4 video.
 It follows the assignment's triangle/trapezoid scanline method, with explicitly
-documented discretization choices. This is a planar slice, not an X-ray sum or
-maximum-intensity projection.
+documented discretization choices. 
 
 ## Windows and VS Code quick start
 
@@ -27,9 +26,7 @@ python Ex0.py examples/MRHead.nrrd examples/mri_planes.csv my_video.mp4
 ```
 
 Running again with the same output name overwrites the old video.
-The first run includes Numba compilation and takes longer. No 3D Slicer, display
-server, or matplotlib is needed. imageio-ffmpeg supplies the FFmpeg executable.
-The MP4 already included in `results` can be opened without installing Python.
+The first run includes Numba compilation and takes longer.
 
 ## CSV contract
 
@@ -73,7 +70,7 @@ interpolation, X-ray rendering, GPU acceleration or interactive controls.
 - `docs/DATASET.md`: datasets and provenance.
 - `docs/TESTING.md`: strategy and reproducible checks.
 - `results/EXPERIMENT.md`: actual environment, correctness and speed results.
-- `results/*.mp4`: actual output videos.
+
 
 ## Results
 

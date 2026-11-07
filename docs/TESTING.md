@@ -27,8 +27,7 @@ encoding. Numerical equality is tested on raw arrays, not H.264 frames.
 Run the exact three-file CLI on real MRI with a rotating four-point CSV, and on
 the triangle CSV. Decode and inspect first/middle/last frames of the real demo.
 Verify triangle masking, anatomy visible, changing oblique slices, constant
-frame dimensions and exact frame counts. This is a visual check, not a medical
-orientation or physical aspect-ratio validation.
+frame dimensions and exact frame counts. 
 
 Run the CLI on mri_with_errors.csv (12 valid rows, 4 invalid rows). The video
 must have 16 frames, with error frames exactly at the invalid rows, and a warning
@@ -52,5 +51,4 @@ python benchmark.py
 python Ex0.py examples/MRHead.nrrd examples/mri_planes.csv new_mri.mp4
 ```
 
-No external services or network are needed after dependency installation because
-the example data and MP4 outputs are included.
+

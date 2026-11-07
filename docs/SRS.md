@@ -65,6 +65,5 @@ the assignment describes indices into M. A physically proportioned or clinically
 oriented slice would need another coordinate transform. Nearest-neighbour
 sampling may alias. H.264 is lossy. Zero-valued raw pixels are mapped using the
 same intensity scale as the volume; for a signed volume this may be gray.
-Encoder failure can leave an incomplete MP4 that must be removed before retry.
-NRRD and CSV inputs are trusted local assignment datasets, not a hostile-file
-service. No medical suitability is claimed.
+
+

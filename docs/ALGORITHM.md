@@ -34,7 +34,7 @@ Initialize a zero H by W array of the volume's dtype. For row y in 0..H-1:
 Nearest-neighbour rounding uses ties toward the greater integer. It does not use
 Python round(), whose half-to-even behavior would make a different convention.
 No accumulated p+=dp error: every point is computed from the row start.
-Floating-point representations near a boundary can still change a rounded sample.
+
 
 ## Decisions completing the assignment
 
@@ -58,6 +58,4 @@ The pixel loop is our algorithm, compiled using Numba nopython mode; the
 implementation does not call a third-party plane-slicing routine. Validation
 and leg geometry are outside the pixel loop. Runtime per frame is O(H*W), with
 O(H*W) output memory. The volume consumes O(sx*sy*sz) memory. Video is streamed.
-Actual NRRD loading may temporarily hold both the loaded array and contiguous
-copy. Global intensity-range calculation is once per export. JIT specializes
-by dtype; first invocation for each dtype includes startup compilation.
+
