@@ -1,10 +1,16 @@
 # Plane projection of a 3D volume
 
-Python implementation of Introduction to Software Engineering Exercise 1.
-Given an integer NRRD volume and an ordered CSV of planes, the program samples
-the volume along each plane and streams one image per plane to an MP4 video.
-It follows the assignment's triangle/trapezoid scanline method, with explicitly
-documented discretization choices. 
+This is my solution to Exercise 1 in Introduction to Software Engineering.
+
+**The problem:** we get a 3D scan (an NRRD file), which is a 3D matrix of numbers.
+Each number is the brightness of one voxel. We also get a CSV file where each row
+describes a flat cut through the volume, with 3 points (triangle) or 4 points
+(trapezoid or rectangle). For every row, the program computes the 2D image of
+that cut, and saves all the images as frames of one MP4 video, in the same order.
+
+**How:** the program walks over the cut row by row, as in the algorithm from the
+assignment, and takes the value of the closest voxel at every step.
+See docs/ALGORITHM.md for the details.
 
 ## Windows and VS Code quick start
 
@@ -55,11 +61,18 @@ volume are permitted; out-of-bounds samples receive zero.
 
 ## Scope and deliverables
 
-Included: validated models, ordered CSV loading, nearest-neighbour scanline
-sampling, unsigned 8/16/32-bit data plus signed 8/16/32-bit compatibility,
-global grayscale normalization, constant-size MP4 export, tests and experiment.
-Not included: GUI, medical interpretation, physical-space reorientation,
-interpolation, X-ray rendering, GPU acceleration or interactive controls.
+In scope:
+
+- Reading the NRRD volume (8, 16 or 32 bit integers) and the CSV of planes.
+- Checking that every plane is valid, and showing an error frame for a bad row.
+- Computing the image of each plane with the closest voxel.
+- Saving all the images as one MP4 video.
+- Tests, a speed benchmark and an experiment.
+
+Out of scope: a GUI, smoothing between voxels (interpolation), and using the
+real size of voxels in millimetres.
+
+Project files:
 
 - `Ex0.py`: command-line entry point; optional `--fps 30` controls playback.
 - `volume_project/model.py`: Volume, Plane, InvalidPlaneError and CSV loading.
@@ -70,7 +83,6 @@ interpolation, X-ray rendering, GPU acceleration or interactive controls.
 - `docs/DATASET.md`: datasets and provenance.
 - `docs/TESTING.md`: strategy and reproducible checks.
 - `results/EXPERIMENT.md`: actual environment, correctness and speed results.
-
 
 ## Results
 
